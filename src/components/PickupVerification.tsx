@@ -108,6 +108,7 @@ export function PickupVerification({ user, pickups, onUpdatePickup, onBack }: Pi
           <div className="flex items-center mb-6">
             <button
               onClick={() => setSelectedPickup(null)}
+              aria-label="Go back"
               className="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors"
             >
               <ArrowLeft className="h-5 w-5" />
@@ -226,6 +227,7 @@ export function PickupVerification({ user, pickups, onUpdatePickup, onBack }: Pi
         <div className="flex items-center mb-6">
           <button
             onClick={onBack}
+            aria-label="Go back"
             className="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors"
           >
             <ArrowLeft className="h-5 w-5" />

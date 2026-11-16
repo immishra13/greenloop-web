@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Shield, Camera, MapPin, Clock, CheckCircle2, AlertCircle, TrendingUp } from 'lucide-react';
 import type { User, Pickup } from '../App';
 
@@ -18,12 +18,20 @@ export function WorkerDashboard({ user, onViewChange, pickups }: WorkerDashboard
     ? Math.round(pickups.reduce((sum, p) => sum + p.segregationScore, 0) / pickups.length)
     : 0;
 
-  const safetyItems = [
+  const [safetyItems, setSafetyItems] = useState([
     { item: 'Safety Gloves', checked: true },
     { item: 'High-Vis Vest', checked: true },
     { item: 'Safety Boots', checked: false },
     { item: 'Face Mask', checked: true }
-  ];
+  ]);
+
+  const toggleSafetyItem = (index: number) => {
+    setSafetyItems((items) =>
+      items.map((item, i) =>
+        i === index ? { ...item, checked: !item.checked } : item
+      )
+    );
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -123,7 +131,7 @@ export function WorkerDashboard({ user, onViewChange, pickups }: WorkerDashboard
                   <input
                     type="checkbox"
                     checked={item.checked}
-                    onChange={() => {}}
+                    onChange={() => toggleSafetyItem(index)}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <span className="ml-3 text-sm text-gray-900">{item.item}</span>
